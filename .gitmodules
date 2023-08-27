@@ -1,0 +1,3 @@
+[submodule "libhat"]
+	path = libhat
+	url = git@github.com:BasedInc/libhat.git
