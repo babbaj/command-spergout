@@ -106,7 +106,7 @@ std::optional<std::tuple<typename Arg::Type, typename Rest::Type...>> build_argu
 
 template<size_t I, typename Arg, typename... Rest>
 std::expected<void, std::string> set_arguments(auto& tuple, std::string_view s, auto... strings) requires (sizeof...(Rest) == (sizeof...(strings))) {
-    auto parsed = Parsable<typename Arg::Type>{s}.parse();
+    auto parsed = parse<typename Arg::Type>(s);
     if (!parsed) return std::unexpected(std::move(parsed.error()));
     std::get<I>(tuple) = *parsed;
     if constexpr (sizeof...(strings) == 0) {
