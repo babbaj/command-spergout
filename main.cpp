@@ -26,7 +26,7 @@ int main(int argc, char** argv) {
                                 })
                         ),
                         Literal<"test">().WithChildren(
-                            Literal<"sneed">().Accepts<Argument<"a", int>, Argument<"b", int>, Argument<"c", int>>([](int a, int b, int c) {
+                            Literal<"sneed">().Accepts<Argument<"a", int>, Argument<"b", float>, Argument<"c", int>>([](int a, float b, int c) {
                                 std::cout << "invoked sneed " << a << " " << b << " " << c << std::endl;
                             }).Accepts<Argument<"a", int>>([](int a) {
                                 std::cout << "invoked sneed " << a << std::endl;
@@ -40,7 +40,7 @@ int main(int argc, char** argv) {
     for (std::string_view str : usage) {
         std::cout << str << std::endl;
     }
-    Lexer l{"elytra test sneed 1 \"-2\" \"1\""};
+    Lexer l{"elytra test sneed 1.2 \"-2.2\" \"1\""};
     auto err = execute_recurse(l, tree);
     if (!err) {
         std::cerr << err.error() << std::endl;
